@@ -88,7 +88,7 @@ const DEFAULT_PLAYERS = [
         time: '周一至周四晚上 | 周末12pm-11pm（视情况而定）',
         intro: 'hello！可以叫我莉莉！我是个爱玩valo的小孩，会有点害羞但其实爱认识新朋友！',
         services: ['网吧陪玩', '漫展陪逛', '吃饭', '逛街'],
-        isHot: true
+        isHot: false
     },
     {
         id: '006',
@@ -106,6 +106,7 @@ const DEFAULT_PLAYERS = [
         time: '不确定～可以问问我哦',
         intro: '嗨嗨是eli哟★ 想玩游戏？别犹豫找我就对啦~ 别害羞 来交个朋友丫❤',
         services: ['网吧陪玩', '游戏学习']
+        isHot: true
     },
     {
         id: '007',
