@@ -136,24 +136,27 @@ function initScrollProgress() {
     window.addEventListener('scroll', updateProgress);
 }
 
-// 初始化回到顶部按钮
+// 初始化滚动到底部按钮
 function initBackToTop() {
-    const backToTopBtn = document.getElementById('back-to-top');
+    const scrollBtn = document.getElementById('scroll-to-bottom');
     
-    if (backToTopBtn) {
+    if (scrollBtn) {
         // 监听滚动事件
         window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
+            // 判断是否接近底部（距离底部200px以内）
+            const scrolledToBottom = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 200;
+            
+            if (window.pageYOffset > 300 && !scrolledToBottom) {
+                scrollBtn.classList.add('visible');
             } else {
-                backToTopBtn.classList.remove('visible');
+                scrollBtn.classList.remove('visible');
             }
         });
         
-        // 点击回到顶部
-        backToTopBtn.addEventListener('click', function() {
+        // 点击滚动到底部
+        scrollBtn.addEventListener('click', function() {
             window.scrollTo({
-                top: 0,
+                top: document.body.scrollHeight,
                 behavior: 'smooth'
             });
         });
@@ -724,7 +727,7 @@ function contactPlayer(playerId) {
                 <div class="contact-methods">
                     <p class="contact-prompt">📱 扫码添加微信好友即可开始</p>
                     <div class="qr-code-container">
-                        <img src="${getSettings().qrCodeUrl || 'https://via.placeholder.com/200x200?text=QR+Code'}" 
+                        <img src="${getSettings().qrCodeUrl || 'qrcode-sekai.png'}" 
                              alt="联系二维码" class="contact-qr">
                     </div>
                     <div class="quick-tip">
