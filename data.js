@@ -18,7 +18,7 @@ const DEFAULT_PLAYERS = [
         time: '全天可接～找我找我！',
         intro: '板板您好呀～虽然我有点菜，但是我很会提供情绪价值！！就是打游戏时会有点一惊一乍呜呜X﹏X不要骂我……',
         services: ['网吧陪玩', '漫展陪逛', '看电影', '吃饭', '逛街', '庆祝生日'],
-        isHot: true
+        isHot: false
     },
     {
         id: '002',
@@ -134,8 +134,8 @@ const DEFAULT_PLAYERS = [
             'https://i.imgur.com/JMnS3me.jpeg',
         ],
         price: '¥399/3小时',
-        rating: 4.8,
-        orders: 18,
+        rating: 4.5,
+        orders: 12,
         specialty: ['可甜可盐', '夸人高手', '跟你一起冲'],
         games: ['PUBG', 'Naraka'],
         time: '每晚9:30后 & 周末',
@@ -145,6 +145,6 @@ const DEFAULT_PLAYERS = [
 ];
 
 const DEFAULT_SETTINGS = {
-    qrCodeUrl: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=请联系管理员添加真实二维码'
+    qrCodeUrl: 'qrcode-sekai.png'
 };
 
