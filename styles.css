@@ -525,6 +525,18 @@ body {
                  0 0 150px rgba(255, 255, 0, 0.3);
 }
 
+/* 标题内部分段样式 - 同一行显示，可调整大小 */
+.gradient-text .main-title {
+    font-size: 1em; /* 相对于父元素 4.5em */
+    margin-right: 20px;
+}
+
+.gradient-text .subtitle-english {
+    font-size: 0.55em; /* 约为 2.5em */
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
 /* 文字光晕效果 */
 .gradient-text::before {
     content: attr(data-text);
@@ -637,6 +649,20 @@ body {
     font-size: 2em;
     color: var(--text-gray);
     font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 副标题分段样式 - 同一行显示，可调整大小 */
+.hero-subtitle .slogan-part {
+    font-size: 1em; /* 相对于父元素 2em */
+}
+
+.hero-subtitle .slogan-separator {
+    font-size: 1em;
+    margin: 0 5px;
 }
 
 .hero-description {
@@ -1479,6 +1505,15 @@ body::before {
     position: relative;
     width: 100%;
     height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.photo-main:hover {
+    transform: scale(1.02);
+}
+
+.photo-main:active {
+    transform: scale(0.98);
 }
 
 .player-image {
@@ -3406,31 +3441,96 @@ body::before {
         display: none;
     }
     
+    /* 优化移动端导航栏 - 减小高度 */
+    .navbar {
+        padding: 0 15px;
+    }
+    
+    .nav-container {
+        padding: 8px 0;
+        gap: 8px;
+    }
+    
+    .nav-brand .logo-container {
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .brand-logo {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .brand-text {
+        font-size: 1.1em !important;
+    }
+    
+    .brand-subtitle {
+        font-size: 0.7em !important;
+    }
+    
     .nav-menu {
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 8px;
         justify-content: center;
     }
-
-    .nav-container {
-        flex-direction: column;
-        gap: 20px;
+    
+    .nav-item {
+        font-size: 0.85em;
+        padding: 5px 10px;
     }
 
+    /* 优化Hero区域间距 */
     .hero-section {
-        padding: 120px 20px 50px;
+        padding: 100px 15px 40px;
+        min-height: auto;
+    }
+    
+    /* 优化Hero统计卡片 */
+    .hero-stats {
+        margin-top: 25px;
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 15px 10px;
+    }
+    
+    .stat-icon {
+        font-size: 1.8em;
+    }
+    
+    .stat-value {
+        font-size: 1.5em;
+    }
+    
+    .stat-label {
+        font-size: 0.85em;
     }
 
     .gradient-text {
-        font-size: 2.5em;
+        font-size: 1.8em;
+        line-height: 1.3;
+    }
+    
+    .gradient-text .main-title {
+        margin-right: 8px;
+    }
+    
+    .gradient-text .subtitle-english {
+        font-size: 0.5em;
     }
 
     .hero-subtitle {
-        font-size: 1.5em;
+        font-size: 1.1em;
+        margin-top: 10px;
+        line-height: 1.4;
     }
 
     .hero-description {
-        font-size: 1.1em;
+        font-size: 0.95em;
+        line-height: 1.6;
+        margin-top: 15px;
     }
 
     .section-title {
@@ -3497,17 +3597,79 @@ body::before {
 }
 
 @media (max-width: 480px) {
+    /* 更小屏幕进一步优化 */
+    .navbar {
+        padding: 0 10px;
+    }
+    
+    .nav-container {
+        padding: 6px 0;
+    }
+    
+    .brand-logo {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .brand-text {
+        font-size: 1em !important;
+    }
+    
+    .brand-subtitle {
+        font-size: 0.65em !important;
+    }
+    
+    .nav-item {
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+    
+    .hero-section {
+        padding: 80px 10px 30px;
+    }
+    
     .gradient-text {
-        font-size: 2em;
+        font-size: 1.5em;
+    }
+    
+    .gradient-text .main-title {
+        margin-right: 6px;
+    }
+    
+    .gradient-text .subtitle-english {
+        font-size: 0.5em;
     }
 
     .hero-subtitle {
-        font-size: 1.2em;
+        font-size: 0.95em;
+        margin-top: 8px;
     }
-
-    .nav-item {
-        font-size: 0.9em;
-        padding: 6px 12px;
+    
+    .hero-description {
+        font-size: 0.85em;
+        margin-top: 12px;
+    }
+    
+    .hero-stats {
+        margin-top: 20px;
+        gap: 10px;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .stat-card {
+        padding: 12px 8px;
+    }
+    
+    .stat-icon {
+        font-size: 1.5em;
+    }
+    
+    .stat-value {
+        font-size: 1.3em;
+    }
+    
+    .stat-label {
+        font-size: 0.75em;
     }
 }
 
