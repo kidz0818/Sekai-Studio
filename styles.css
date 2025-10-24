@@ -504,12 +504,12 @@ body {
 .hero-title {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 30px;
+    align-items: center;
 }
 
 .gradient-text {
-    font-size: 4.5em;
     font-weight: 900;
     background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
     -webkit-background-clip: text;
@@ -518,23 +518,22 @@ body {
     background-size: 300% 300%;
     animation: rainbowShift 5s ease-in-out infinite, megaGlow 2s ease-in-out infinite alternate, textFloat 3s ease-in-out infinite, scaleBreath 4s ease-in-out infinite;
     position: relative;
-    display: inline-block;
-    letter-spacing: 3px;
+    display: block;
     text-shadow: 0 0 50px rgba(0, 255, 255, 0.8), 
                  0 0 100px rgba(255, 0, 255, 0.5),
                  0 0 150px rgba(255, 255, 0, 0.3);
 }
 
-/* 标题内部分段样式 - 同一行显示，可调整大小 */
-.gradient-text .main-title {
-    font-size: 1em; /* 相对于父元素 4.5em */
-    margin-right: 20px;
+/* 第一行：星界电竞 */
+.gradient-text.main-title-line {
+    font-size: 4.5em;
+    letter-spacing: 8px;
 }
 
-.gradient-text .subtitle-english {
-    font-size: 0.55em; /* 约为 2.5em */
-    font-weight: 600;
-    letter-spacing: 2px;
+/* 第二行：SEKAI STUDIO */
+.gradient-text.subtitle-english-line {
+    font-size: 3.2em;
+    letter-spacing: 5px;
 }
 
 /* 文字光晕效果 */
@@ -646,7 +645,7 @@ body {
 } */
 
 .hero-subtitle {
-    font-size: 2em;
+    font-size: 1.8em;
     color: var(--text-gray);
     font-weight: 300;
     display: flex;
@@ -657,12 +656,13 @@ body {
 
 /* 副标题分段样式 - 同一行显示，可调整大小 */
 .hero-subtitle .slogan-part {
-    font-size: 1em; /* 相对于父元素 2em */
+    font-size: 1em; /* 相对于父元素 1.8em */
 }
 
 .hero-subtitle .slogan-separator {
     font-size: 1em;
-    margin: 0 5px;
+    margin: 0 10px;
+    opacity: 0.5;
 }
 
 .hero-description {
