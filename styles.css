@@ -3819,20 +3819,20 @@ body::before {
 .nav-item:nth-child(3) { animation-delay: 0.4s; }
 .nav-item:nth-child(4) { animation-delay: 0.6s; }
 
-/* 标签波浪效果 - 更柔和 */
-.tag, .specialty-tag {
+/* 标签波浪效果 - 禁用（防止破图） */
+/* .tag, .specialty-tag {
     animation: wave-glitch-text 20s ease-in-out infinite;
-}
+} */
 
-/* 徽章波浪效果 - 降低强度 */
-.rating-badge, .price-badge, .orders-badge {
+/* 徽章波浪效果 - 禁用（防止破图） */
+/* .rating-badge, .price-badge, .orders-badge {
     animation: wave-glitch-border 18s ease-in-out infinite;
-}
+} */
 
-/* 按钮波浪效果 - 降低强度 */
-.action-btn, .hero-btn {
+/* 按钮波浪效果 - 禁用（防止破图） */
+/* .action-btn, .hero-btn {
     animation: wave-glitch-border 16s ease-in-out infinite;
-}
+} */
 
 /* 扫描线覆盖层 - 常驻赛博朋克效果 - 优化版 */
 .scanline-overlay {
