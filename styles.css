@@ -3796,17 +3796,18 @@ body::before {
 }
 
 /* 陪玩师卡片波浪效果 - 降低强度 */
-.player-card {
+/* 禁用破图的 Glitch 动画 */
+/* .player-card {
     animation: wave-glitch-border 20s ease-in-out infinite;
-}
+} */
 
-.player-card .player-image {
+/* .player-card .player-image {
     animation: wave-glitch-img 18s ease-in-out infinite;
-}
+} */
 
-.player-name {
+/* .player-name {
     animation: wave-glitch-text 15s ease-in-out infinite;
-}
+} */
 
 /* 导航栏波浪效果 */
 .nav-item {
