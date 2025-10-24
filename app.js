@@ -727,7 +727,7 @@ function contactPlayer(playerId) {
                 <div class="contact-methods">
                     <p class="contact-prompt">📱 扫码添加微信好友即可开始</p>
                     <div class="qr-code-container">
-                        <img src="${getSettings().qrCodeUrl || 'qrcode-sekai.png'}" 
+                        <img src="${getSettings().qrCodeUrl || 'assets/qrcode-sekai.png'}" 
                              alt="联系二维码" class="contact-qr">
                     </div>
                     <div class="quick-tip">
