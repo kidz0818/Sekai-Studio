@@ -145,6 +145,6 @@ const DEFAULT_PLAYERS = [
 ];
 
 const DEFAULT_SETTINGS = {
-    qrCodeUrl: 'qrcode-sekai.png'
+    qrCodeUrl: 'assets/qrcode-sekai.png'
 };
 
