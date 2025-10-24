@@ -106,7 +106,6 @@ const DEFAULT_PLAYERS = [
         time: '不确定～可以问问我哦',
         intro: '嗨嗨是eli哟★ 想玩游戏？别犹豫找我就对啦~ 别害羞 来交个朋友丫❤',
         services: ['网吧陪玩', '游戏学习']
-        isHot: true
     },
     {
         id: '007',
