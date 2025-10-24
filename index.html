@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星界电竞 SEKAI STUDIO - 专业陪玩工作室 | 让游戏更有趣</title>
+    <title>星界电竞 SEKAI STUDIO - 专业陪玩团队 | 让游戏更有趣</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="星界电竞SEKAI STUDIO专业陪玩团队，提供高质量游戏陪伴服务。专业·友善·靠谱，让您的游戏体验更加精彩！">
@@ -79,7 +79,7 @@
                 </span>
             </h1>
             <p class="hero-description">
-                <strong>专业陪玩工作室</strong> | 服务超过<span class="highlight-number">1000+</span>位玩家<br>
+                <strong>专业陪玩团队</strong> | 服务超过<span class="highlight-number">1000+</span>位玩家<br>
                 提供<span class="highlight-number">15+</span>款热门游戏陪玩服务 | 平均评分<span class="highlight-number">4.9/5.0</span>⭐
             </p>
             
@@ -92,7 +92,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">🎯</div>
-                    <div class="stat-value" data-target="10000+">0</div>
+                    <div class="stat-value" data-target="10000">0</div>
                     <div class="stat-label">服务时长</div>
                 </div>
                 <div class="stat-card">
@@ -161,7 +161,7 @@
             <h2 class="section-title">
                 <span class="title-accent">精选</span>陪玩师
             </h2>
-            <p class="section-subtitle">颜值在线 · 技术过硬 · 情绪满分</p>
+            <p class="section-subtitle">颜值在线 · 技术过硬 · 服务满分</p>
             <div class="section-tags">
                 <span class="tag-badge verified">✓ 实名认证</span>
                 <span class="tag-badge popular">🔥 超高人气</span>
@@ -405,6 +405,19 @@
 
     <script src="data.js"></script>
     <script src="app.js"></script>
+    <script>
+        // Vercel Analytics
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@vercel/analytics@1/dist/analytics.min.js';
+            script.onload = function() {
+                if (window.Analytics) {
+                    window.Analytics.inject();
+                }
+            };
+            document.head.appendChild(script);
+        })();
+    </script>
 </body>
 </html>
 
