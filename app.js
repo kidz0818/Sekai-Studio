@@ -354,14 +354,14 @@ function loadPlayers() {
             <div class="mouse-follower"></div>
             <!-- 照片轮播区域 -->
             <div class="player-photos">
-                <div class="photo-main">
+                <div class="photo-main" onclick="openPhotoGallery('${player.id}')" style="cursor: pointer;">
                     <img src="${player.image || 'https://via.placeholder.com/350x320?text=陪玩师'}" 
                          alt="${player.name}" 
                          class="player-image"
                          onerror="this.src='https://via.placeholder.com/350x320?text=陪玩师'">
                     <div class="photo-overlay">
                         <div class="photo-count">${(player.photos || []).length + 1} 张照片</div>
-                        <button class="photo-gallery-btn" onclick="openPhotoGallery('${player.id}')">
+                        <button class="photo-gallery-btn" onclick="event.stopPropagation(); openPhotoGallery('${player.id}')">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M2 6C2 4.89543 2.89543 4 4 4H16C17.1046 4 18 4.89543 18 6V14C18 15.1046 17.1046 16 16 16H4C2.89543 16 2 15.1046 2 14V6Z" stroke="currentColor" stroke-width="2"/>
                                 <path d="M6 8C6.55228 8 7 7.55228 7 7C7 6.44772 6.55228 6 6 6C5.44772 6 5 6.44772 5 7C5 7.55228 5.44772 8 6 8Z" stroke="currentColor" stroke-width="2"/>
