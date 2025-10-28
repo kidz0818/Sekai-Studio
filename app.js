@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 核心功能优先加载
     loadPlayers();
+    loadEquipment(); // 加载设备展示
     loadSettings();
     initNavigation();
     initAdminAccess();
@@ -312,9 +313,9 @@ function initScrollAnimations() {
 
 // 设备展示区滚动动画
 function initEquipmentAnimation() {
-    const equipmentCards = document.querySelectorAll('.equipment-card');
+    const equipmentWrappers = document.querySelectorAll('.equipment-card-wrapper');
     
-    if (equipmentCards.length === 0) return;
+    if (equipmentWrappers.length === 0) return;
     
     const equipmentObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -330,8 +331,8 @@ function initEquipmentAnimation() {
         rootMargin: '0px 0px -30px 0px'
     });
     
-    equipmentCards.forEach(card => {
-        equipmentObserver.observe(card);
+    equipmentWrappers.forEach(wrapper => {
+        equipmentObserver.observe(wrapper);
     });
 }
 
@@ -362,6 +363,17 @@ function loadPlayers() {
                          alt="${player.name}" 
                          class="player-image"
                          onerror="this.src='https://via.placeholder.com/350x320?text=陪玩师'">
+                    ${player.video ? `
+                    <video class="player-video" 
+                           loop 
+                           muted 
+                           playsinline
+                           preload="metadata"
+                           onloadedmetadata="this.currentTime = 0.1">
+                        <source src="${player.video}" type="video/mp4">
+                    </video>
+                    <div class="video-indicator">🎥</div>
+                    ` : ''}
                     <div class="photo-overlay">
                         <div class="photo-count">${(player.photos || []).length + 1} 张照片</div>
                         <button class="photo-gallery-btn" onclick="event.stopPropagation(); openPhotoGallery('${player.id}')">
@@ -444,7 +456,7 @@ function loadPlayers() {
     // 重新初始化滚动动画
     initScrollAnimations();
     
-    // 添加卡片鼠标跟随效果
+    // 添加卡片鼠标跟随效果和视频播放控制
     setTimeout(() => {
         const cards = document.querySelectorAll('.player-card');
         cards.forEach(card => {
@@ -459,12 +471,270 @@ function loadPlayers() {
                 }
             });
             
+            // 视频播放控制
+            const video = card.querySelector('.player-video');
+            if (video) {
+                card.addEventListener('mouseenter', function() {
+                    video.play().catch(err => console.log('视频播放失败:', err));
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    video.pause();
+                    video.currentTime = 0; // 重置到开头
+                });
+            }
+            
             // 添加visible class触发入场动画
             setTimeout(() => {
                 card.classList.add('visible');
             }, Math.random() * 500);
         });
     }, 100);
+}
+
+// ========================================
+//   设备展示功能
+// ========================================
+
+// 设备数据
+const equipmentData = [
+    {
+        id: 'rog-prism-2',
+        category: 'headphone',
+        name: 'ROG 棱镜2',
+        desc: '超低延遲 · 高穩定性 · AI 降噪',
+        tag: '10mm 超寬頻麥克風',
+        variants: [
+            { color: '黑色', colorCode: '#1a1a1a', image: 'assets/rog-prism-2-black.png' },
+            { color: '白色', colorCode: '#f5f5f5', image: 'assets/rog-prism-2-white.png' }
+        ]
+    },
+    {
+        id: 'hyperx-cloud-3',
+        category: 'headphone',
+        name: 'HyperX 飓风3 无线版',
+        desc: '无线自由 · 长续航 · 舒适佩戴',
+        tag: '120小时续航',
+        variants: [
+            { color: '黑色', colorCode: '#1a1a1a', image: 'assets/hyperx-cloud-3-black.png' },
+            { color: '黑红', colorCode: '#d41f3c', image: 'assets/hyperx-cloud-3-black-red.png' }
+        ]
+    },
+    {
+        id: 'rog-azoth',
+        category: 'keyboard',
+        name: 'ROG AZOTH 夜魔',
+        desc: 'Gasket 结构设计 · 三层消音泡棉 · 2.4GHz 无线',
+        tag: 'SpeedNova 无线技术',
+        variants: [
+            { color: '黑色', colorCode: '#1a1a1a', image: 'assets/rog-azoth-black.png' },
+            { color: '白色', colorCode: '#f5f5f5', image: 'assets/rog-azoth-white.png' }
+        ]
+    },
+    {
+        id: 'logitech-gpro-2',
+        category: 'mouse',
+        name: '罗技 G PRO 2',
+        desc: 'LIGHTFORCE 混合微动 · HERO 2 传感器',
+        tag: '超轻量化设计',
+        variants: [
+            { color: '黑色', colorCode: '#1a1a1a', image: 'assets/gpro-2-black.png' },
+            { color: '白色', colorCode: '#f5f5f5', image: 'assets/gpro-2-white.png' },
+            { color: '粉色', colorCode: '#ffb3d9', image: 'assets/gpro-2-pink.png' }
+        ]
+    },
+    {
+        id: 'logitech-502x',
+        category: 'mouse',
+        name: '罗技 502 X PLUS',
+        desc: '人体工学设计 · 可调节配重 · 无线充电',
+        tag: 'LIGHTSPEED 技术',
+        variants: [
+            { color: '黑色', colorCode: '#1a1a1a', image: 'assets/502x-black.png' }
+        ]
+    }
+];
+
+// 加载设备展示
+function loadEquipment() {
+    const equipmentGrid = document.getElementById('equipmentGrid');
+    if (!equipmentGrid) return;
+    
+    equipmentGrid.innerHTML = equipmentData.map(equipment => `
+        <div class="equipment-card-wrapper" data-equipment-id="${equipment.id}">
+            <div class="equipment-card" data-equipment="${equipment.category}">
+                <div class="equipment-glow"></div>
+                
+                <!-- 轮播图片区域 -->
+                <div class="equipment-carousel">
+                    ${equipment.variants.length > 1 ? `
+                        <button class="carousel-btn carousel-prev" aria-label="上一个">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-btn carousel-next" aria-label="下一个">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    ` : ''}
+                    
+                    <div class="equipment-image">
+                        ${equipment.variants.map((variant, index) => `
+                            <img src="${variant.image}" 
+                                 alt="${equipment.name} - ${variant.color}" 
+                                 class="carousel-image ${index === 0 ? 'active' : ''}"
+                                 data-variant-index="${index}"
+                                 onerror="this.src='https://via.placeholder.com/300x300?text=${variant.color}'">
+                        `).join('')}
+                    </div>
+                    
+                    <!-- 配色指示器 -->
+                    ${equipment.variants.length > 1 ? `
+                        <div class="carousel-indicators">
+                            ${equipment.variants.map((variant, index) => `
+                                <button class="indicator-dot ${index === 0 ? 'active' : ''}" 
+                                        data-index="${index}"
+                                        style="background-color: ${variant.colorCode}"
+                                        title="${variant.color}"
+                                        aria-label="${variant.color}">
+                                </button>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    <!-- 当前配色名称 -->
+                    <div class="current-variant-name">${equipment.variants[0].color}</div>
+                </div>
+                
+                <div class="equipment-info">
+                    <h3 class="equipment-name">${equipment.name}</h3>
+                    <p class="equipment-desc">${equipment.desc}</p>
+                    <div class="equipment-tag">${equipment.tag}</div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    // 初始化轮播交互
+    initEquipmentCarousel();
+}
+
+// 初始化设备轮播功能
+function initEquipmentCarousel() {
+    const wrappers = document.querySelectorAll('.equipment-card-wrapper');
+    
+    wrappers.forEach(wrapper => {
+        const carousel = wrapper.querySelector('.equipment-carousel');
+        if (!carousel) return;
+        
+        const images = carousel.querySelectorAll('.carousel-image');
+        const indicators = carousel.querySelectorAll('.indicator-dot');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const variantName = carousel.querySelector('.current-variant-name');
+        
+        if (images.length <= 1) return; // 单配色无需轮播
+        
+        let currentIndex = 0;
+        
+        // 切换到指定索引
+        function goToSlide(index) {
+            // 移除当前活动状态
+            images[currentIndex].classList.remove('active');
+            indicators[currentIndex].classList.remove('active');
+            
+            // 设置新索引
+            currentIndex = index;
+            
+            // 添加新的活动状态
+            images[currentIndex].classList.add('active');
+            indicators[currentIndex].classList.add('active');
+            
+            // 更新配色名称
+            const variantColor = indicators[currentIndex].getAttribute('title');
+            variantName.textContent = variantColor;
+            
+            // 添加切换动画
+            images[currentIndex].style.animation = 'none';
+            setTimeout(() => {
+                images[currentIndex].style.animation = '';
+            }, 10);
+        }
+        
+        // 上一张
+        function prevSlide() {
+            const newIndex = (currentIndex - 1 + images.length) % images.length;
+            goToSlide(newIndex);
+        }
+        
+        // 下一张
+        function nextSlide() {
+            const newIndex = (currentIndex + 1) % images.length;
+            goToSlide(newIndex);
+        }
+        
+        // 绑定按钮事件
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevSlide();
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextSlide();
+            });
+        }
+        
+        // 绑定指示器点击事件
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', (e) => {
+                e.stopPropagation();
+                goToSlide(index);
+            });
+        });
+        
+        // 键盘支持（当卡片聚焦时）
+        wrapper.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextSlide();
+            }
+        });
+        
+        // 触摸滑动支持
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+    });
 }
 
 // 加载设置（二维码）

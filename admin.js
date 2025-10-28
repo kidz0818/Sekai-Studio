@@ -64,6 +64,7 @@ function savePlayer(e) {
         id: playerId || Date.now().toString(),
         name: document.getElementById('playerName').value,
         image: document.getElementById('playerImage').value || 'https://via.placeholder.com/300x300?text=陪玩师',
+        video: document.getElementById('playerVideo').value.trim() || null, // 视频URL（可选）
         photos: document.getElementById('playerPhotos').value.split('\n').filter(url => url.trim()).slice(0, 5),
         price: document.getElementById('playerPrice').value,
         rating: parseFloat(document.getElementById('playerRating').value),
@@ -142,6 +143,7 @@ function editPlayer(id) {
     document.getElementById('playerId').value = player.id;
     document.getElementById('playerName').value = player.name;
     document.getElementById('playerImage').value = player.image;
+    document.getElementById('playerVideo').value = player.video || ''; // 加载视频URL
     document.getElementById('playerPhotos').value = (player.photos || []).join('\n');
     document.getElementById('playerPrice').value = player.price || '';
     document.getElementById('playerRating').value = player.rating || '';
