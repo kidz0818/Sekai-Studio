@@ -6,6 +6,7 @@ const DEFAULT_PLAYERS = [
         id: '001',
         name: '芙芙',
         image: 'https://i.imgur.com/9aA6gL9.jpeg',
+        video: null, // 视频URL（可选），例如：'https://example.com/fufu-intro.mp4'
         photos: [
             'https://i.imgur.com/22Pmb2g.jpeg',
             'https://i.imgur.com/eAzlDHh.jpeg',
@@ -24,6 +25,7 @@ const DEFAULT_PLAYERS = [
         id: '002',
         name: '豆豆',
         image: 'https://i.imgur.com/GoiE0Im.jpeg',
+        video: 'assets/doudou.mov', // 本地视频路径
         photos: [
             'https://i.imgur.com/ZfByyVP.jpeg',
             'https://i.imgur.com/px7mxoV.jpeg',
@@ -42,6 +44,7 @@ const DEFAULT_PLAYERS = [
         id: '003',
         name: '毛线',
         image: 'https://i.imgur.com/LZE9mJT.jpeg',
+        video: 'assets/maoxian.mov', // 本地视频路径
         photos: [
             'https://i.imgur.com/i9b9N54.jpeg',
             'https://i.imgur.com/df5bqtr.jpeg',
@@ -59,6 +62,7 @@ const DEFAULT_PLAYERS = [
         id: '004',
         name: '月月',
         image: 'https://i.imgur.com/FNTgSyO.jpeg',
+        video: null, // 视频URL（可选）
         photos: [
             'https://i.imgur.com/tZTBcD7.jpeg',
             'https://i.imgur.com/jFvVjKX.jpeg',
@@ -76,6 +80,7 @@ const DEFAULT_PLAYERS = [
         id: '005',
         name: 'Elaine莉莉',
         image: 'https://i.imgur.com/RbQFCMn.jpeg',
+        video: 'assets/elaine.mov', // 本地视频路径
         photos: [
             'https://i.imgur.com/Fr8aC2A.jpeg',
             'https://i.imgur.com/EGgpDQ6.jpeg',
@@ -88,12 +93,13 @@ const DEFAULT_PLAYERS = [
         time: '周一至周四晚上 | 周末12pm-11pm（视情况而定）',
         intro: 'hello！可以叫我莉莉！我是个爱玩valo的小孩，会有点害羞但其实爱认识新朋友！',
         services: ['网吧陪玩', '漫展陪逛', '吃饭', '逛街'],
-        isHot: false
+        isHot: true
     },
     {
         id: '006',
         name: 'eli',
         image: 'https://i.imgur.com/IraUzzm.jpeg',
+        video: 'assets/eli.mp4', // 本地视频路径
         photos: [
             'https://i.imgur.com/xlMSLad.jpeg',
             'https://i.imgur.com/VBd6KKG.jpeg',
@@ -111,6 +117,7 @@ const DEFAULT_PLAYERS = [
         id: '007',
         name: '露西',
         image: 'https://i.imgur.com/a4NQZUq.jpeg',
+        video: 'assets/lucy.mov',
         photos: [
             'https://i.imgur.com/Vmxd1es.jpeg',
             'https://i.imgur.com/xQb99Qu.jpeg',
@@ -129,6 +136,7 @@ const DEFAULT_PLAYERS = [
         id: '008',
         name: '阿九',
         image: 'https://i.imgur.com/BSKSmq4.jpeg',
+        video: null, // 视频URL（可选）
         photos: [
             'https://i.imgur.com/IIrPhi9.jpeg',
             'https://i.imgur.com/JMnS3me.jpeg',
